@@ -28,6 +28,9 @@ router.get('/', function (req, res){
  *        {added: {name: "popsicle", price: 1.45}}
  */
 router.post('/', function (req, res){
+  if (!req.body.name || !req.body.price){
+    throw new BadRequestError("Missing data");
+  }
   items.push(req.body);
   return res.json({"added": req.body});
 });
